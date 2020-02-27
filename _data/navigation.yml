@@ -9,7 +9,7 @@
   include: 'N'
 
 - title: git
-  url: /git/
+  url: /git-vcs/
   include: 'N'
 
 - title: Search

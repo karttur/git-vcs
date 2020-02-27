@@ -106,6 +106,18 @@ Enter passphrase for /Users/"youruser"/.ssh/id_rsa:
 Identity added: /Users/"youruser"/.ssh/id_rsa (your_email@example.com)
 ```
 
+Confirm that your SSH key was added:
+
+<span class='terminal'>$ ssh\-add \-l</span>
+
+To delete a key:
+
+<span class='terminal'>$ ssh\-add \-d [key]</span>
+
+To add a key:
+
+<span class='terminal'>$ ssh\-add [key]</span>
+
 In the next section you need the public copy of your key (residing in the file <span class='file'>id_rsa.pub</span>). You are going to tell GitHub.com that this key should open your account for different requests. To copy the key to the clipboard, use the command:
 
 <span class='terminal'>$ pbcopy < ~/.ssh/id_rsa.pub</span>

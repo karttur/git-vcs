@@ -505,6 +505,6 @@ The maintainers of the original repo (to whom you sent the pull request) will be
 
 ## Resources
 
-Youtube tutorial [Introduction to Git - Remotes](https://www.youtube.com/watch?v=Gg4bLk8cGNo) by David Mahler by D. Mahler (20180327).
+Youtube tutorial [Introduction to Git - Remotes](https://www.youtube.com/watch?v=Gg4bLk8cGNo) by David Mahler (20180327).
 
 [Pro Git - Everything you need to know about git](https://git-scm.com/book/en/v2/) by Scott Chacon and Ben Straub (20200219).
