@@ -24,7 +24,7 @@ This post is mainly based on different parts from the tutorial series [Learn Git
 
 ## Prerequisites
 
-You need to install git for command line use as outlined in the parallel post on [Local git control](../git-local-use)
+You need to install git for command line use as outlined in the parallel post on [Local git control](../git-local-use).
 
 ## Create directory with git control
 

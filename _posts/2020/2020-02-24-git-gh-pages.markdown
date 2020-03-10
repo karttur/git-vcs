@@ -23,11 +23,11 @@ This post is a manual on how to create and manage this blog ([git command line](
 
 You have to have a [GitHub](https://github.com) account, preferably set up to allow access using SSH, as outlined in the post on [Remote repositories with GitHub](../git-github). The content and layout of this blog is built using [Jekyll](https://jekyllrb.com), a static web-site generator. To follow this post you do not need to use Jekyll, but the trick is that [GitHub](https://github.com) is set up for handling Jekyll and create static web-pages (blogs for example) from Jekyll. And it is all for free. To learn about Jekyll, and how I created my blogs and pages, please see [Set up blog tools: Jekyll and Atom](https://karttur.github.io/setup-blog/) and [Setup Jekyll Theme Blog](https://karttur.github.io/setup-theme-blog/).
 
-### Creating a new GitHub repo
+## Creating a new GitHub repo
 
 You can only create an online GitHub repo using a browser while being logged in to your GitHub account. Explained in the GitHub page on [Creating a new repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-new-repository). However, you only need to create the repo, everything else can be done from your local command line as outlined on another of GitHub´s help pages [Adding an existing project to GitHub using the command line](https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line).
 
-#### Creating a new gh-pages blog repo
+### Creating a new gh-pages blog repo
 
 As an example of setting up and managing a repo after only creating it online, this post will take you through how to create a repo for _gh-pages_ - that is the GitHub system for free publishing of web-pages using [Jekyll](https://jekyllrb.com).
 
@@ -47,17 +47,42 @@ When the new repo is created, GitHub will show a page with hints on how to proce
 <figcaption> Github - Hints after creating a new repository.</figcaption>
 </figure>
 
-## Local git processing
+### Create local repo
 
-Open a <span class='app'>Terminal</span> window and change directory <span class='terminalapp'>cd</span> to the parent folder where you want to keep the local clone. Create a new directory, the easiest is to name it identical with your newly created online repo:
+Open a <span class='app'>Terminal</span> window and change directory <span class='terminalapp'>cd</span> to the parent folder where you want to keep the local clone.
+
+
+#### Alternative I
+
+Create a new directory, the easiest is to name it identical with your newly created online repo:
 
 <span class='terminal'>$ mkdir git-vcs</span>
-
-### Initiate local repo
 
 <span class='terminalapp'>cd</span> to the new directory and initiate git:
 
 <span class='terminal'>$ cd git-vcs<br>$ git init</span>
+
+#### Alternative II
+
+In the parent directory executue the commands:
+
+<span class='terminal'>$ git init git-vcs<br>$ cd git-vcs</span>
+
+### Configure repo
+
+To get the new repo started, configure the repo user and email:
+
+<span class='terminal'>$ git config user.name _repo-username_</span>
+
+<span class='terminal'>$ git config \-\- user.email _email@example.com_</span>
+
+Create an initial branch. You can choose to create either _master_ or _gh-pages_ (or a branch with any other name), but as you might end up with a _master_ branch let us first create _master_ and then replace it with _gh-pages_.
+
+<span class='terminal'>$ git checkout -b master</span>
+
+```
+Switched to a new branch 'master'
+```
 
 If you check the branch of your local repo:
 
@@ -67,9 +92,11 @@ If you check the branch of your local repo:
 \* master
 ```
 
+If no branch is reported, this is because you have not yet _staged_ and _committed_ any content.  You can then safely continue, just ignore that the branch name is not seen.
+
 As noted above, for GitHub to be used for publishing web-pages, you need to replace _master_ with _gh-pages_, **not** create _gh-pages_ as a new branch from _master_. _gh-pages_  is thus an _orphan_ branch that takes the place of _master_. This is accomplished with the command:
 
-<span class='terminal'>$ git checkout --orphan gh-pages</span>
+<span class='terminal'>$ git checkout \-\-orphan gh-pages</span>
 
 ```
 Switched to a new branch 'gh-pages'
@@ -82,14 +109,7 @@ If you rerun the command:
 ```
 \* gh-pages
 ```
-
-### add remote
-
-Your local account is not linked to any of your online GitHub repos. To link it, execute the command:
-
-<span class='terminal'>$ git remote add origin git@github.com:karttur/git-vcs.git</span>
-
-Before we can _push_ to our, completely empty, online GitHub repo you must create, _stage_ and _commit_ some content.
+Again, if you have _commited_ nothing, you will not see the branch, but that is OK.
 
 ### Create some content
 
@@ -107,14 +127,38 @@ Hit [ctrl]+[X] to exit <span class='terminalapp'>pico</span> and save the edits 
 
 _stage_ and _commit_ the changes you have made, they will belong the branch _gh-pages_:
 
-<span class='terminal'>$ git add .<br>$ git commit \-m \'initial commit\'</span>
+<span class='terminal'>$ git add .<br>$ git commit \-m \'Created README.md\'</span>
 
 ```
-[gh-pages (root-commit) aa6a314] initial commit
+[gh-pages (root-commit) aa6a314] Created README.md
  X files changed, Y insertions(+)
  create mode ...
  ...
 ```
+
+Again try the command:
+
+<span class='terminal'>$ git branch</span>
+
+```
+\* gh-pages
+```
+
+This time, gh-pages should be your only branch. If not, you need to delete other branches.
+
+<span class='terminal'>$ git branch -d [branch]</span>
+
+or to force delete if the branch contains un-megred changes:
+
+<span class='terminal'>$ git branch -D [branch]</span>
+
+### add remote
+
+Your local account is not linked to any of your online GitHub repos. To link it, execute the command:
+
+<span class='terminal'>$ git remote add origin git@github.com:"yourGitHubAccount"/git-vcs.git</span>
+
+Before _pushing_ to our, completely empty, online GitHub repo, _stage_ and _commit_ any changes.
 
 ### git push
 

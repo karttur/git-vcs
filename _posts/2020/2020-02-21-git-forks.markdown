@@ -59,7 +59,7 @@ Note that the project (or repo) includes 3 branches (as well as 3 _commits_). If
 
 You can now clone the forked repo to your local machine much in the same way as you cloned your own original repo in the parallel post on [Remote repositories with GitHub](../git-github/).
 
-![github-dismiss-github-action-popup](../../images/github-clone-button-4-fork.png){: .pull-right}
+![github-clone-button-4-submodule](../../images/github-clone-button-4-submodule.png){: .pull-right}
 
 In your browser, viewing the Spoon-Knife repo, click on the <span class='button'>Clone or Download</span> button and copy the SSH based location string, as shown to the right.
 
