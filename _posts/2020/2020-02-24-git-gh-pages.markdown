@@ -15,6 +15,8 @@ share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+
 ## Introduction
 
 This post is a manual on how to create and manage this blog ([git command line](https://karttur.github.io/git-vcs/)) using the local git command line tool.

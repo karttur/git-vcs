@@ -15,6 +15,8 @@ share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+
 ## Introduction
 
 This post shows how you can use the git command line tool for cloning Karttur's GeoImagine Framework to your local machine. The instructions are intended for developers that want to contribute towards the project. The instructions cover the required steps for forking and cloning of remotes for both _origin_ and _upstream_, and the creation of a development branch. The latter is then pushed to the online GitHub repo _origin_ owned by the developer. The post ends with a command line script that will automate all the processing except forking.

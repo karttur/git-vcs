@@ -17,6 +17,8 @@ share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+
 ## Introduction
 
 In the online, [GitHub](https://github.com) Version Control System (VCS) you can duplicate, or _fork_, any existing public repository to your own user. Further, you can then _clone_ the _fork_ that resides in your GitHub user and work with it on your local machine while also keeping in sync with changes made in the original source (usually aliased as _upstream_). These are very powerful tools for developing your own projects using parts collected from all over GitHub.

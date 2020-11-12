@@ -17,6 +17,8 @@ share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+
 ## Introduction
 
 This post covers connecting a local git clone to a remote master at [gitHub.com](https://github.com). The post is inspired by the Youtube [Introduction to Git - Remotes](https://www.youtube.com/watch?v=Gg4bLk8cGNo) by David Mahler, and the written post [‘Git’ with the Program: Getting Started with GitHub](https://thenewstack.io/git-with-the-program-getting-started-with-github/).
@@ -311,6 +313,11 @@ nothing to commit, working tree clean
 The local clone of the repo is now 1 _commit_ ahead of _origin/master_. To put them in sync again, <span class='terminalapp'>git push</span> the local changes to the remote repo:
 
 <span class='terminal'>$ git push origin master</span>
+
+or afer 20201001
+
+<span class='terminal'>$ git push origin main</span>
+
 
 ```
 Enumerating objects: 5, done.

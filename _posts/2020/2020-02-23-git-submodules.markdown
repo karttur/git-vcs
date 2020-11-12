@@ -17,6 +17,8 @@ share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+
 ## Introduction
 
 Karttur's GeoImagine Framework available at [Github](https://github.com/karttur) is built from an (almost) empty "superproject" repository with around 40 individual repositories attached as submodules. Each submodule (or repo) contains a customised Python package. Together all the submodules constitute the complete Framework. This post explains the git concept of submodules, and details how Karttur's GeoImagine Framework is organised online.
