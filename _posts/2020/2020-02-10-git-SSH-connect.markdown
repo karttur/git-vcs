@@ -34,13 +34,17 @@ First check for any existing SSH keys. As SSH keys are OS dependent, follow the 
 
 If the returned message shows that you already have (unknown) <span class='file'>.ssh</span> files, please use the GitHub help page on [Checking for existing SSH keys](https://help.github.com/en/github/authenticating-to-github/checking-for-existing-ssh-keys).
 
+If you only use your SSH keys for GitHub, then you can replace your key without worrying about it. How to delete an existing key is covered further down.
+
 ### Generating a new SSH key and adding it to the ssh-agent
 
 If you do not have an existing SSH key and wish to generate one, follow the GitHub instructions [Generating a new SSH key and adding it to the ssh-agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent). The Mac OSX instructions are summarised here.
 
+https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
 In your <span class='app'>Terminal</span> window type:
 
-<span class='terminal'>$ ssh-keygen \-t rsa \-b 4096 \-C "your_email@example.com"</span>
+<span class='terminal'>$ ssh-keygen \-t rsa \-b 4096 \-C \"your_email@example.com\"</span>
 
 ```
 Generating public/private rsa key pair.
@@ -180,7 +184,7 @@ To add a second SSH key, with a few modifications outlined below you can follow 
 
 Open a <span class='app'>terminal</span> window, and generate a SSH key for an email account that you have not yet generated a key for:
 
-<span class='terminal'>$ ssh-keygen -t rsa -b 4096 -C "your_other_email@example.com"</span>
+<span class='terminal'>$ ssh-keygen -t rsa -b 4096 -C \"your_other_email@example.com\"</span>
 
 Do **NOT** accept the default with the returned message:
 

@@ -42,7 +42,7 @@ Go ahead and create you first repo, the figure below shows the fields to fill.
 <figcaption> Github - Create a new repository.</figcaption>
 </figure>
 
-You have to give the repo a name ("my-first-repo" in the example above). Also fill in a <span class='textbox'>Description</span> and let the repository be _Public_ (to use _Private_ repos comes with a fee). Click the radio button for _Initialize this repository with a README_. Click <span class='button'>Create Repository</span> and behind the scenes GitHub is _staging_ and _commiting_.
+You have to give the repo a name. Also fill in a <span class='textbox'>Description</span> and let the repository be _Public_ (to use _Private_ repos comes with a fee). Click the check boxes  for _Add a README_ file, _Add .gitignore_ and _Choose a license_ as appropriate. Click <span class='button'>Creating repository ...</span> and behind the scenes GitHub is _staging_ and _commiting_.
 
 ![github-dismiss-github-action-popup](../../images/github-dismiss-github-action-popup.png){: .pull-right}
 
@@ -57,16 +57,11 @@ Your first GitHub repo is created, including one (1) _commit_ at branch _master_
 
 ## Grab the SSH for a repo
 
-Towards the right side, approximately mid down there is a <span class='button'>Clone or Download</span> button (shown below). Click on it.
+Towards the right side, approximately mid down there is a <span class='button'>Code</span> button (shown below - in older version it was labelled [Clone or Download]). Click on it.
 
-<figure>
-<img src="../../images/github-repo-clone-download.png">
-<figcaption> Github - Repository clone or download potions.</figcaption>
-</figure>
+![github-repo-clone-download-set-SSH](../../images/github-repo-clone-download.png){: .pull-right}
 
-![github-repo-clone-download-set-SSH](../../images/github-repo-clone-download-set-SSH.png){: .pull-right}
-
-In the pop-out window for Clone or Download click the smaller text "Use SSH" and the setting will change to **Clone with SSH** (shown to the right). Do that. And then copy the string in the textbox starting with <span class='textbox'>git@github.com...</span>. This string will allow us to connect from a local git repo directly to the remote repo on GitHub.
+In the pop-out window select "SSH" and the setting will change to **Clone with SSH**. And then copy the string in the textbox starting with <span class='textbox'>git@github.com...</span>. This string will allow us to connect from a local git repo directly to the remote repo on GitHub.
 
 ## Clone to local repo
 
@@ -99,9 +94,9 @@ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 
 ### Local repo settings
 
-The post on [Local git control](../git-local-use) explains how to [Check and setup user name](../git-local-use). For the cloned repo ("my-first-repo") you can setup a local user and email that matches the SSH key. As I created this repo as a trial, I need to set my user and emial. First <span class='terminalapp'>cd</span> to the clone of the repo, and then set user and email:
+The post on [Local git control](../git-local-use) explains how to [Check and setup user name](../git-local-use). For the cloned repo ("my-first-repo") you can setup a local user and email that matches the SSH key. As I created this repo as a trial, I need to set my user and email. First <span class='terminalapp'>cd</span> to the clone of the repo, and then set user and email:
 
-<span class='terminal'>$ cd my-first-repo<br>$ git config --local user.name thomasgumbricht<br>$ git config --local user.email thomas.karttur@gmail.com</span>
+<span class='terminal'>$ cd my-first-repo<br>$ git config \-\-local user.name thomasgumbricht<br>$ git config \-\-local user.email thomas.karttur@gmail.com</span>
 
 ### git remotes
 
@@ -259,7 +254,7 @@ The <span class='terminalapp'>git pull</span> command combines <span class='term
 
 ### git push
 
-The command <span class='terminalapp'>git push</span> is used for sending local clone changes to remote repos. To test it, make some edits to the local copy of <span class='file'>Chapters.md</span>. You can use any editor, for instance <span class='terminalapp'>pico</span>:
+The command [<span class='terminalapp'>git push</span>](https://git-scm.com/docs/git-push) is used for sending local clone changes to remote repos. To test it, make some edits to the local copy of <span class='file'>Chapters.md</span>. You can use any editor, for instance <span class='terminalapp'>pico</span>:
 
 <span class='terminal'>$ pico Chapters.md</span>
 

@@ -61,7 +61,7 @@ You can now clone the forked repo to your local machine much in the same way as 
 
 ![github-clone-button-4-submodule](../../images/github-clone-button-4-submodule.png){: .pull-right}
 
-In your browser, viewing the Spoon-Knife repo, click on the <span class='button'>Clone or Download</span> button and copy the SSH based location string, as shown to the right.
+In your browser, viewing the Spoon-Knife repo, click on the <span class='button'>Code</span> button (previously <span class='button'>Clone or Download/span> as in the figure) and copy the SSH based location string, as shown to the right.
 
 Return to your <span class='app'>Terminal</span> window, <span class='terminalapp'>cd</span> to the parent folder where you want save the clone of the Spoon-Knife project, and <span class='terminalapp'>git clone</span> with the SSH link pasted:
 

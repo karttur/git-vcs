@@ -103,7 +103,7 @@ As mentioned above, you can follow the step-by-step manual for cloning to the Fr
 
 #### Clone using terminal I
 
-Open a <span class='app'>terminal</span> window and change directory (<span class='terminalapp'>cd</span>) to the parent folder where you want to have the clone of GeoImagine package. You need to consider how you have/want to setup the PyDev Integrated Development Environment (IDE) to be used for running the Framework. that is, do you want to clone the Framework to the working directory of your IDE (for instance <span class='app'>Eclipse</span>) or do you want to keep the Framework separate and do a local copy or linked import?
+Open a <span class='app'>terminal</span> window and change directory (<span class='terminalapp'>cd</span>) to the parent folder where you want to have the clone of GeoImagine package. You need to consider how you have/want to setup the PyDev Integrated Development Environment (IDE) to be used for running the Framework. That is, do you want to clone the Framework to the working directory of your IDE (for instance <span class='app'>Eclipse</span>) or do you want to use git terminal command for version control outside of the IDE? This post is for using git terminal commands for handling versions. How to operate git from inside <span class='app'>Eclipse</span> is covered in the post [Setup Eclipse teamed with GitHub repository](https://karttur.github.io/geoimagine/develop/develop-github-eclipse/).
 
 <span class='terminal'>$ cd /path/to/framework/parent/</span>
 

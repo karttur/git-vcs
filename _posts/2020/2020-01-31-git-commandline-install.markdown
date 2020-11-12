@@ -62,7 +62,7 @@ See the official GitHub page on [Setting your commit email address](https://help
 
 The principles for setting your git email address is similar to setting the git user name. Here is, for example, how to check and set a global email:
 
-<span class='terminal'>git config \-\- user.email</span>
+<span class='terminal'>$ git config \-\- user.email</span>
 
 <span class='terminal'>$ git config \-\- user.email _email@example.com_</span>
 
@@ -78,7 +78,7 @@ There are different options regarding how to set your password if you are clonin
 
 #### SSH
 
-SSH (means secure shell) is more cmplicated but will facilitate if you use the git command line tool (rather than [<span class='app'>GitHub Desktop</span>](https://desktop.github.com) and GitHub.com itself directly). All the other posts in this blog deal with using the git command line tool. Thus the next post is [git Secure Shell (SSH)](../git-SSH-connect).
+SSH (means secure shell) is more cmplicated but will facilitate if you use the git command line tool (rather than [<span class='app'>GitHub Desktop</span>](https://desktop.github.com) and GitHub.com itself directly). All the other posts in this blog deal with using the git command line tool. Thus the next post in this series deals with [git Secure Shell (SSH)](../git-SSH-connect).
 
 ### Online resources
 
