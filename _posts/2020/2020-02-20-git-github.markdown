@@ -10,14 +10,14 @@ tags:
   - clone
   - fork
 image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
-modified: '2020-02-20 T18:17:25.000Z'
-date: '2020-02-20 11:27'
+date: '2020-11-20 11:27'
+modified: '2020-11-12'
 comments: true
 share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
-**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo branch.**
 
 ## Introduction
 
@@ -98,7 +98,11 @@ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 
 The post on [Local git control](../git-local-use) explains how to [Check and setup user name](../git-local-use). For the cloned repo ("my-first-repo") you can setup a local user and email that matches the SSH key. As I created this repo as a trial, I need to set my user and email. First <span class='terminalapp'>cd</span> to the clone of the repo, and then set user and email:
 
-<span class='terminal'>$ cd my-first-repo<br>$ git config \-\-local user.name thomasgumbricht<br>$ git config \-\-local user.email thomas.karttur@gmail.com</span>
+<span class='terminal'>$ cd my-first-repo<br>$ git config user.name thomasgumbricht<br>$ git config user.email thomas.karttur@gmail.com</span>
+
+Verify your configuration by displaying your configuration file:
+
+<span class='terminal'>$ cat .git/config</span>
 
 ### git remotes
 

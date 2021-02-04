@@ -10,14 +10,14 @@ tags:
   - clone
   - fork
 image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
-modified: '2020-02-22 T18:17:25.000Z'
 date: '2020-02-22 11:27'
+modified: '2020-11-12'
 comments: true
 share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
-**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo branch.**
 
 ## Introduction
 

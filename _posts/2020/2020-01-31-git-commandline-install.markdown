@@ -5,13 +5,15 @@ categories: git
 excerpt: Install Git command line tool
 image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
 date: '2020-01-31 T18:17:25.000Z'
-modified: '2020-01-11 T18:17:25.000Z'
+modified: '2020-11-12'
 comments: true
 share: true
 figure15: github-framework_karttur_15_new-other
 figure16: github-framework_karttur_16_pydev-package
 figure17: github-framework_karttur_17_pydev-package2
 ---
+
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo branch.**
 
 ## Introduction
 

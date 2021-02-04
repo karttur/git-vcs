@@ -8,14 +8,14 @@ tags:
   - gh-pages
   - git
 image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
-modified: '2020-02-22 T18:17:25.000Z'
 date: '2020-02-22 11:27'
+modified: '2020-11-12'
 comments: true
 share: true
 ---
 <script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
 
-**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo brach.**
+**NOTE, 1 October 2020 the label 'main' was replaced by 'main' for the default repo branch.**
 
 ## Introduction
 
@@ -33,7 +33,7 @@ You can only create an online GitHub repo using a browser while being logged in 
 
 As an example of setting up and managing a repo after only creating it online, this post will take you through how to create a repo for _gh-pages_ - that is the GitHub system for free publishing of web-pages using [Jekyll](https://jekyllrb.com).
 
-A GitHub repo for publishing must replace the default branch _master_  with a branch named _gh-pages_. Thus, the setup of _gh-pages_ using the local command line tool is a bit more complicated compared to setting up an ordinary repo with branches.
+A GitHub repo for publishing must replace the default branch _main_  with a branch named _gh-pages_. Thus, the setup of _gh-pages_ using the local command line tool is a bit more complicated compared to setting up an ordinary repo with branches.
 
 First you have to go to your online [GitHub](https://github.com) account and create a new repo. Just the repo name, nothing else, then click the <span class='button'>Create repository</span> button, as shown below.
 
@@ -42,7 +42,7 @@ First you have to go to your online [GitHub](https://github.com) account and cre
 <figcaption> Github - Create a new repository.</figcaption>
 </figure>
 
-When the new repo is created, GitHub will show a page with hints on how to proceed with "Quick setup..." and other options. Before writing this blog I had a very vague idea about these hints. Now I know.
+When the new repo is created, GitHub will show a page with hints on how to proceed with "Quick setup..." and other options.
 
 <figure>
 <img src="../../images/github-new-repo-hints.png">
@@ -53,8 +53,25 @@ When the new repo is created, GitHub will show a page with hints on how to proce
 
 Open a <span class='app'>Terminal</span> window and change directory <span class='terminalapp'>cd</span> to the parent folder where you want to keep the local clone.
 
-
 #### Alternative I
+
+![github-settings-menu-SSH-keys](../../images/github-code-alts.png){: .pull-right}
+When the new repo is created, click on the green button <span class='button'>Code</span>. There are (in November 2020) 4 alternatives for cloning, plus the additional options [Open with GitHub Desktop] and [Download ZIP]. Copy the text for the clone alternative [SSH], as shown in the figure to the right. Return to the local terminal command line, and make sure you are in the parent directory where you want to place the local clone. Then type (but do **not** execute):
+
+<span class='terminal'>$ git clone </span>
+
+If you followed the instructions in the previous section, you can now just paste the SSH link from your clipboard to the command line:
+
+<span class='terminal'>$ git clone git@github.com:karttur/"repo".git</span
+
+Change directory (<span class='terminalapp'>cd</span>) to the cloned repo:
+
+<span class='terminal'>$ cd "repo"</span
+
+
+
+
+#### Alternative II
 
 Create a new directory, the easiest is to name it identical with your newly created online repo:
 
@@ -64,26 +81,28 @@ Create a new directory, the easiest is to name it identical with your newly crea
 
 <span class='terminal'>$ cd git-vcs<br>$ git init</span>
 
-#### Alternative II
-
-In the parent directory executue the commands:
+You can also initiate the local repo from the parent:
 
 <span class='terminal'>$ git init git-vcs<br>$ cd git-vcs</span>
 
 ### Configure repo
 
-To get the new repo started, configure the repo user and email:
+To get the new repo started, configure the local repo user and email if they differ from your global user and email:
 
 <span class='terminal'>$ git config user.name _repo-username_</span>
 
 <span class='terminal'>$ git config \-\- user.email _email@example.com_</span>
 
-Create an initial branch. You can choose to create either _master_ or _gh-pages_ (or a branch with any other name), but as you might end up with a _master_ branch let us first create _master_ and then replace it with _gh-pages_.
+Check the branch of your local repo:
 
-<span class='terminal'>$ git checkout -b master</span>
+<span class='terminal'>$ git branch</span>
+
+If should say * main. if there is no branch you need to create an initial branch. You can choose to create either _main_ or _gh-pages_ (or a branch with any other name), but as you might end up with a _main_ branch let us first create _main_ and then replace it with _gh-pages_.
+
+<span class='terminal'>$ git checkout -b main</span>
 
 ```
-Switched to a new branch 'master'
+Switched to a new branch 'main'
 ```
 
 If you check the branch of your local repo:
@@ -91,17 +110,28 @@ If you check the branch of your local repo:
 <span class='terminal'>$ git branch</span>
 
 ```
-\* master
+\* main
 ```
 
 If no branch is reported, this is because you have not yet _staged_ and _committed_ any content.  You can then safely continue, just ignore that the branch name is not seen.
 
-As noted above, for GitHub to be used for publishing web-pages, you need to replace _master_ with _gh-pages_, **not** create _gh-pages_ as a new branch from _master_. _gh-pages_  is thus an _orphan_ branch that takes the place of _master_. This is accomplished with the command:
+As noted above, for GitHub to be used for publishing web-pages, you need to replace _main_ with _gh-pages_, **not** create _gh-pages_ as a new branch from _main_. _gh-pages_  is thus an _orphan_ branch that takes the place of _main_. This is accomplished with the command:
 
 <span class='terminal'>$ git checkout \-\-orphan gh-pages</span>
 
 ```
 Switched to a new branch 'gh-pages'
+```
+
+Commit the changes
+
+<span class='terminal'>git commit -m "created gh-pages"</span>
+
+```
+[gh-pages (root-commit) 8934df7] created gh-pages
+ 2 files changed, 676 insertions(+)
+ create mode 100644 LICENSE
+ create mode 100644 README.md
 ```
 
 If you rerun the command:
@@ -110,8 +140,8 @@ If you rerun the command:
 
 ```
 \* gh-pages
+  main
 ```
-Again, if you have _commited_ nothing, you will not see the branch, but that is OK.
 
 ### Create some content
 
