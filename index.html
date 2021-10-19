@@ -1,0 +1,20 @@
+---
+layout: page
+title: git command line
+excerpt: "git Version Control System for command line"
+image: rainfall-delta_3B43_trmm_2001-2016_mk-z-ts-model
+search_omit: true
+---
+
+Joint or shared (coding) projects benefit largely from a repository service that keeps track of versions and changes. git, initially developed by Linus Torvalds for creating Linux OS, is today the most widely used distributed Version Control System (VCS).
+
+This blog is about installing, setting up and working with git VCS.
+The blog primarily centers on the git command line tool. Both for local repositories, and
+for connecting and managing online repositories hosted at GitHub.com.
+
+<h1>git version control system<h1>
+<ul class="post-list">
+{% for post in site.categories.git reversed %}
+  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}</a></article></li>
+{% endfor %}
+</ul>

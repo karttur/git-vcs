@@ -1,0 +1,512 @@
+---
+layout: post
+title: Forking repositories
+categories: git
+excerpt: "Forking and cloning GitHub repositories"
+tags:
+  - GitHub
+  - git
+  - remote repository
+  - clone
+  - fork
+image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
+date: '2020-02-21 11:27'
+modified: '2020-11-12'
+comments: true
+share: true
+---
+<script src="https://karttur.github.io/common/assets/js/karttur/togglediv.js"></script>
+
+**NOTE, 1 October 2020 the label 'master' was replaced by 'main' for the default repo branch.**
+
+## Introduction
+
+In the online, [GitHub](https://github.com) Version Control System (VCS) you can duplicate, or _fork_, any existing public repository to your own user. Further, you can then _clone_ the _fork_ that resides in your GitHub user and work with it on your local machine while also keeping in sync with changes made in the original source (usually aliased as _upstream_). These are very powerful tools for developing your own projects using parts collected from all over GitHub.
+
+This post covers how to _fork_ an online, public GiHub project, create a local _clone_ and keep both the local _clone_ and the online _fork_ in sync with each other and in sync with the original, _upstream_ repo. The post is inspired by the Youtube [Introduction to Git - Remotes](https://www.youtube.com/watch?v=Gg4bLk8cGNo) by David Mahler. GitHub has its own introduction to [Forking Projects](https://guides.github.com/activities/forking/) that also offers the [the Spoon-Knife project](https://github.com/octocat/Spoon-Knife) for use when learning to _fork_.
+
+## Prerequisits
+
+You have to have a GitHub account, preferably set up to allow access using SSH, as outlined in the post on [Remote repositories with GitHub](../git-github). You must also identify an online account with a public repo that you can fork - for instance the [the Spoon-Knife project](https://github.com/octocat/Spoon-Knife) setup specifically for this purpose. If you want to try to make live updates from an original repo after it has changed, you need to create two online repos at GitHub that you can control. That is not covered in this post.
+
+## GitHub fork
+
+You can not _push_ any local changes back to a GitHub repository that you have no rights to, even if it is public. But GitHub allows you to _fork_ any public repo which is the same thing as creating an identical copy (or clone). The user performing the fork will then become the owner of the copy, allowing the new user to _push_ changes to his or hers copy at GitHub.com. The _forking_ as such is done from the source repo and cloned into the account of the logged in user.
+
+Open your web-browser and log in to [GitHub](https://github.com). You must be logged in order to _fork_. Open a new browser window and navigate to the [the Spoon-Knife project](https://github.com/octocat/Spoon-Knife). Even if you are watching the Spoon-Knife project, you are still logged in as your own user (shown below).
+
+<figure>
+<img src="../../images/github-spoon-knife-project.png">
+<figcaption> Github - the Spoon-Knife project.</figcaption>
+</figure>
+
+![github-dismiss-github-action-popup](../../images/github-fork-button.png){: .pull-left}
+
+To _fork_ a project to your own account, just click the <span class='button'>Fork</span> button (shown to the left). The _forking_ will take a few seconds, or more for large repos, and then your browser will show the copy of the _forked_ repo in your own account. Note the small forked icon in front of the account name.
+
+<figure>
+<img src="../../images/github-spoon-knife-project-forked.png">
+<figcaption> Github - the Spoon-Knife project forked to another account.</figcaption>
+</figure>
+
+![github-spoon-knife-project-branches](../../images/github-spoon-knife-project-branches.png){: .pull-left}
+
+Note that the project (or repo) includes 3 branches (as well as 3 _commits_). If you click on the button indicating the current branch <span class='button'>Branch: master</span>, a dropdown menu appears and tells you the other branches, as well as gives you the option of creating further branches. We are going to return to these branches later in this post.
+<br />
+<br />
+<br />
+<br />
+
+## Clone forked account
+
+You can now clone the forked repo to your local machine much in the same way as you cloned your own original repo in the parallel post on [Remote repositories with GitHub](../git-github/).
+
+![github-clone-button-4-submodule](../../images/github-clone-button-4-submodule.png){: .pull-right}
+
+In your browser, viewing the Spoon-Knife repo, click on the <span class='button'>Code</span> button (previously <span class='button'>Clone or Download/span> as in the figure) and copy the SSH based location string, as shown to the right.
+
+Return to your <span class='app'>Terminal</span> window, <span class='terminalapp'>cd</span> to the parent folder where you want save the clone of the Spoon-Knife project, and <span class='terminalapp'>git clone</span> with the SSH link pasted:
+
+<span class='terminal'>$ git clone git@github.com:thomasgumbricht/Spoon-Knife.git</span>
+
+```
+Cloning into 'Spoon-Knife'...
+remote: Enumerating objects: 16, done.
+remote: Total 16 (delta 0), reused 0 (delta 0), pack-reused 16
+Receiving objects: 100% (16/16), done.
+Resolving deltas: 100% (3/3), done.
+```
+
+## git remote
+
+<span class='terminalapp'>cd</span> into the cloned directory:
+
+<span class='terminal'>$ cd Spoon-Knife</span>
+
+Check out the remote connections of the repo:
+
+<span class='terminal'>$ git remote -v</span>
+
+```
+origin	git@github.com:thomasgumbricht/Spoon-Knife.git (fetch)
+origin	git@github.com:thomasgumbricht/Spoon-Knife.git (push)
+```
+
+Note that the default remote (named _origin_) link is with your (my) own account, **not** the account where the original project resided.
+
+### git remote add upstream
+
+You now have a (static) copy of the _forked_ project (Spoon-Knife) in your GitHub online account and a _clone_ of your own copy on your local machine. But you are detached from any updates done in the original repository (of Spoon-Knife). You can solve that, not via the online GitHub account, but using your local account. You accomplish that by adding another remote. When this remote is the parent of a _fork_ residing as a clone in the repo itself (like in this case), the conventions is to call this remote "upstream".
+
+To create the required command you must first return to the parent repo of your fork, [the Spoon-Knife project](https://github.com/octocat/Spoon-Knife) to grab the SSH path to call at the command line. Then execute the command:
+
+<span class='terminal'>$ git remote add upstream https://github.com/octocat/Spoon-Knife.git</span>
+
+To check out if this had any effect:
+
+<span class='terminal'>$ git remote -v</span>
+
+```
+origin	git@github.com:thomasgumbricht/Spoon-Knife.git (fetch)
+origin	git@github.com:thomasgumbricht/Spoon-Knife.git (push)
+upstream	https://github.com/octocat/Spoon-Knife.git (fetch)
+upstream	https://github.com/octocat/Spoon-Knife.git (push)
+```
+
+Aside from you primary remote repo (_origin_) your local repo is also linked to another repo under the alias _upstream_.
+
+If you want to remove a remote the command for that is <span class='terinalapp'> git remote remove [alias]</span>.
+
+## Sync with upstream
+
+As shown in the post on [Remote repositories with GitHub](../git-github) you can check if you are in sync with a remote repo using <span class='terminalapp'>git log</span> or <span class='terminalapp'>git status</span>:
+
+<span class='terminal'>$ git status</span>
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+
+The previous posts also introduced the <span class>git log</span> with blings attached for displaying a graphical representation of the _branches_ and _commits_.
+
+<span class='terminal'>$ git log \-\-all \-\-decorate \-\-oneline \-\-graph</span>
+
+```
+* f439fc5 (origin/change-the-title) Update README.md
+| * 5806070 (origin/test-branch) Create test.md
+|/  
+* d0dd1f6 (HEAD -> master, origin/master, origin/HEAD) Pointing to the guide for forking
+* bb4cc8d Create styles.css and updated README
+* a30c19e Created index page for future collaborative edit
+```
+
+This message reveals that we have several _branches_ in the remote (_origin_) repo:
+
++ _origin/master_
++ _origin/test-branch_
++ _origin/change-the-title_
+
+The local _master_ is in sync with with _origin/master_ but behind the other branches. Neither the _status_ not the _log_ message reveal anything about the other remote repo, _upstream_. To access the status of _upstream_ you first have to run the command:
+
+<span class='terminal'>$ git fetch upstream</span>
+
+```
+From https://github.com/octocat/Spoon-Knife
+ * [new branch]      change-the-title -> upstream/change-the-title
+ * [new branch]      master           -> upstream/master
+ * [new branch]      test-branch      -> upstream/test-branch
+```
+
+If rerun <span class='terminalapp'>git status</span> the message will be the same as last time, but if you rerun <span class='terminalapp'>log</span>:
+
+<span class='terminal'>$ git log \-\-all \-\-decorate \-\-oneline \-\-graph</span>
+
+```
+* f439fc5 (upstream/change-the-title, origin/change-the-title) Update README.md
+| * 5806070 (upstream/test-branch, origin/test-branch) Create test.md
+|/  
+* d0dd1f6 (HEAD -> master, upstream/master, origin/master, origin/HEAD) Pointing to the guide for forking
+* bb4cc8d Create styles.css and updated README
+* a30c19e Created index page for future collaborative edits
+```
+
+you see that all _branches_ and _commits_ from _upstream_ are in sync with the corresponding _branches/commits_ from _origin_. You have successfully connected and fetched documents from the original remote repo, that you gave the alias _upstream_.
+
+## git merge
+
+Inspect the branches of your project (as for now all 3 versions are in sync: _upstream_, _origin_ and you local clone):
+
+```
+* f439fc5 (upstream/change-the-title, origin/change-the-title) Update README.md
+| * 5806070 (upstream/test-branch, origin/test-branch) Create test.md
+|/  
+* d0dd1f6 (HEAD -> master, upstream/master, origin/
+```
+Either of the branches off _master_ can be used for an initial fast-forward merge, but to merge the second branch to _master_ will require a 3-way merge. This should be done locally. Start by merging the branch change-the-title into master:
+
+<span class='terminal'>$ git merge origin/change-the-title</span>
+
+```
+Updating d0dd1f6..f439fc5
+Fast-forward
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+The _merge_ was easily accomplished with Fast-forward, even if the _branch_ was from the remote (_origin_) repository.
+
+## git push and git push delete
+
+You can now delete the _upstream_ branch "change-the-title":
+
+<span class='terminal'>git push origin \-\-delete change-the-title</span>
+
+```
+To github.com:thomasgumbricht/Spoon-Knife.git
+ - [deleted]         change-the-title
+```
+
+If you return to your browser and refresh the view over your online GitHub repo Spoon-Knife, you will see that now there are only 2 branches.
+
+<figure>
+<img src="../../images/github-spoon-knife-project-branches-02.png">
+<figcaption> Github - the Spoon-Knife project with fewer branches.</figcaption>
+</figure>
+
+If you check status:
+
+<span class='terminal'>$ git status</span>
+
+```
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+
+git will notify you that you are one commit ahead locally compared to _origin/master_, and how to <span class='terminalapp'>git push</span> to get in sync:
+
+<span class='terminal'>$ git push</span>
+
+```
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:thomasgumbricht/Spoon-Knife.git
+   d0dd1f6..f439fc5  master -> master
+```
+
+<button id= "toggleStatus01" onclick="hiddencode('Status01')">Hide/Show git status response</button>
+
+<div id="Status01" style="display:none">
+
+{% capture text-capture %}
+{% raw %}
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+{% endraw %}
+{% endcapture %}
+{% include widgets/toggle-code.html  toggle-text=text-capture  %}
+</div>
+
+## git tracking
+
+You might already have noted that the remote _branches_ did not clone to your local machine (only _master_ was copied). You have to "clone" these separately. The standard command _checkout_ (see post on [Local git control](../git-local-use)) can be used with the parameter -b to create a local clone tracking a remote branch <span class='terminalapp'>git checkout -b [branch] [remotename]/[branch]</span>:
+
+<span class='terminal'>$ git checkout -b test-branch origin/test-branch</span>
+
+If your new branch shall have the same name as the remote branch, you can shorten this to:
+
+<span class='terminal'>$ git checkout --track origin/test-branch</span>
+
+A third alternative is to first create a local branch, and then attach it to tracking the remote branch:
+
+<span class='terminal'>$ git branch test-branch<br>git checkout test-branch<br>git branch --set-upstream-to origin/test-branch</span>
+
+Use one of the alternatives above to create a local branch that tracks the branch test-branch at _origin_, then run the extended <span class='terminalapp'>git log</span> command:
+
+<span class='terminal'>$ git log \-\-all \-\-decorate \-\-oneline \-\-graph</span>
+
+```
+* f439fc5 (upstream/change-the-title, master) Update README.md
+| * 5806070 (HEAD -> test-branch, upstream/test-branch, origin/test-branch) Create test.md
+|/  
+* d0dd1f6 (upstream/master, origin/master, origin/HEAD) Pointing to the guide for forking
+* bb4cc8d Create styles.css and updated README
+* a30c19e Created index page for future collaborative edits
+```
+
+You can also check you local branches with the command:
+
+<span class='terminal'>$ git branch</span>
+
+```
+master
+* test-branch
+```
+
+The local branch test-branch is now included, it is also the active branch. Let us try to merge it with the local master:
+
+<span class='terminal'>$ git branch checkout master<br>$ git merge test-branch</span>
+
+```
+Merge made by the 'recursive' strategy.
+ test.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.md
+```
+
+With another successful merge completed, you can delete the branch. But this time you have a local branch that is tracking a remote branch. To delete the tracking, use the command:
+
+<span class='terminal'>$ git branch \-delete \-remote origin/test-branch</span>
+or<br>
+<span class='terminal'>$ git branch \-dr origin/test-branch</span>
+
+```
+Deleted remote-tracking branch origin/test-branch (was 5806070).
+```
+
+And then delete the local branch itself:
+
+<span class='terminal'>$ git branch -d test-branch</span>
+
+```
+Deleted branch test-branch (was 5806070).
+```
+
+Now you can also delete the remote branch at _origin_:
+
+<span class='terminal'>$ git push origin --delete test-branch</span>
+
+```
+To github.com:thomasgumbricht/Spoon-Knife.git
+ - [deleted]         test-branch
+```
+
+Remember to push the changes form you local repo to the online _origin_:
+
+<span class='terminal'>$ git push</span>
+
+```
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 297 bytes | 297.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:thomasgumbricht/Spoon-Knife.git
+   f439fc5..6a4b7e8  master -> master
+```
+
+If you check
+
+<span class='terminal'>$ git status</span>
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+
+<button id= "toggleLog01" onclick="hiddencode('Log01')">Hide/Show git log \-\-all \-\-decorate \-\-oneline \-\-graph response</button>
+
+<div id="Log01" style="display:none">
+
+{% capture text-capture %}
+{% raw %}
+```
+*   6a4b7e8 (HEAD -> master, origin/master, origin/HEAD) Merge branch 'test-branch'
+|\  
+| * 5806070 (upstream/test-branch) Create test.md
+* | f439fc5 (upstream/change-the-title) Update README.md
+|/  
+* d0dd1f6 (upstream/master) Pointing to the guide for forking
+* bb4cc8d Create styles.css and updated README
+* a30c19e Created index page for future collaborative edits
+```
+{% endraw %}
+{% endcapture %}
+{% include widgets/toggle-code.html  toggle-text=text-capture  %}
+</div>
+
+If you check your online GitHub repo (Spoon-Knife) there should only be only one branch: _master_.
+
+### git branch
+
+The standard command <span class='terminalapp'>git branch</span> returns a list of the local branches, with a star \* indicating the active branch. To instead inspect remote branches, add the parameter -r:
+
+<span class='terminal'>$ git branch -r</span>
+
+and to inspect both local and remote (all, -a):
+
+<span class='terminal'>$ git branch -a</span>
+
+## Sync with upstream
+
+As you have no rights to edit or change the _upstrem_ project, you can not infer any changes. Neither can you react to any suggestions for change against the current "downstream" suggestions that reaches _upstream_. To fully test the links between GitHub and git for these kinds of version control you need to get two separate GitHub accounts that you control. I will not cover that fully in this tutorial, just outline the principle steps.
+
+### Sync from upstream
+
+First update for any _commits_ that have occurred in _upstream_, otherwise they will not be recorded in your local history tree.
+
+<span class='terminal'>$ git fetch upstream</span>
+
+Inspect the relation between _upstream_ and your local clone, for example with the extended log command:
+
+<span class='terminal'>$ git log \-\-all \-\-decorate \-\-oneline \-\-graph</span>
+
+If the local master is behind _upstream/master_ run a merge from your local _master_:
+
+<span class='terminal'>$ git branch checkout master<br>$ git merge upstream/master</span>
+
+You local repo _master_ branch is now in sync with _upstream/master_, but the GitHub fork is still behind, which you an confirm with another git log command:
+
+<span class='terminal'>$ git log \-\-all \-\-decorate \-\-oneline \-\-graph</span>
+
+To sync the online fork, push the merged local _master_ to _origin/master_
+
+<span class='terminal'>$ git push origin master</span>
+
+### Pull requests
+
+A pull request is a **GitHub** (not git) specific command that notifies the fork origin account of proposed changes. Before sending a pull request, you need to do some edits or changes (otherwise you have nothing to suggest). The best way to go about that is to create a new branch that holds the edits or changes.
+
+#### Create new branch
+
+The process of proposing changes usually starts at you local clone of the forked repo. Thus, in your <span class='app'>Terminal</span> window pointing towards your local clone of the the Spoon-Knife project, create a new branch:
+
+<span class='terminal'>$ git checkout \-b \"edit-index\"</span>
+
+```
+Switched to a new branch 'edit-index'
+```
+
+<button id= "toggleBranch01" onclick="hiddencode('Branch01')">Hide/Show git branch response</button>
+
+<div id="Branch01" style="display:none">
+
+{% capture text-capture %}
+{% raw %}
+```
+* edit-index
+  master
+```
+{% endraw %}
+{% endcapture %}
+{% include widgets/toggle-code.html  toggle-text=text-capture  %}
+</div>
+
+Do some edit that you also save in the file <span class='file'>index.html</span>
+
+_commit_ the changes to the branch _edit-index_:
+
+<span class='terminal'>$ git commit \-am \"update index.html\"</span>
+
+```
+[edit-index 8b19037] update index.html
+ 1 file changed, 1 insertion(+)
+```
+
+Your local repo will now be ahead of, and out of sync with, your forked GitHub repo (with the alias _origin_). Push the changes to _origin_:
+
+<span class='terminal'>$ git push origin edit-index</span>
+
+```
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 322 bytes | 322.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'edit-index' on GitHub by visiting:
+remote:      https://github.com/thomasgumbricht/Spoon-Knife/pull/new/edit-index
+remote:
+To github.com:thomasgumbricht/Spoon-Knife.git
+ * [new branch]      edit-index -> edit-index
+```
+
+### Pull requests
+
+![github-branch-button-menu-edit-index](../../images/github-branch-button-menu-edit-index.png){: .pull-right}
+
+Return to your [online GitHub account](https://github.com). it should now have 2 branches. Change to the branch _edit-index_ via the button that says <span class='button'>Branch: Master</span>.
+
+The latest registered commit is the "update index.html". GitHub also tells you that the branch is 4 commits ahead of the source of the fork.
+
+<figure>
+<img src="../../images/github-edit-index-branch.png">
+<figcaption> Github - the branch with your edits of the forked project.</figcaption>
+</figure>
+
+![guthub-button-new-pull-request](../../images/guthub-button-new-pull-request.png){: .pull-right}
+
+You can now create a "New pull request", by clicking the button for that (illustrated to the right). That will take you to the GitHub repo that is the origin of the fork displaying a "Comparing pages" window. As the project you have tested out, the [the Spoon-Knife project](https://github.com/octocat/Spoon-Knife) was created as a test-project it is full of older pull requests.
+
+<figure>
+<img src="../../images/github-fork-comparing-changes.png">
+<figcaption> Github - Comparing changes in pull requests.</figcaption>
+</figure>
+
+To actually generate a pull request for the owner of the account, click the <span class='button'>Create pull request</span> button. To send the request you have to fill in the textboxes for <span class='textbox'>title</span> and <span class='textbox'>Comment</span> and then click <span class='textbox'>Create pull request</span>.
+
+<figure>
+<img src="../../images/github-open-pull-request.png">
+<figcaption> Github - Open a pull request.</figcaption>
+</figure>
+
+The maintainers of the original repo (to whom you sent the pull request) will be notified and can decide what to do with your request (accept, reject, review or edit etc). Dependent on what actions are taken you can then choose to delete the branch with your suggested edits, continue with your own development, or try to alter your edits to get them accepted (if rejected), etc.
+
+## Resources
+
+Youtube tutorial [Introduction to Git - Remotes](https://www.youtube.com/watch?v=Gg4bLk8cGNo) by David Mahler (20180327).
+
+[Pro Git - Everything you need to know about git](https://git-scm.com/book/en/v2/) by Scott Chacon and Ben Straub (20200219).

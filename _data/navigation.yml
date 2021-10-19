@@ -1,0 +1,17 @@
+# Site navigation links
+
+- title: About
+  url: /about/
+  include: 'N'
+
+- title: Fount
+  url: /
+  include: 'N'
+
+- title: git
+  url: /git-vcs/
+  include: 'N'
+
+- title: Search
+  url: /search/
+  include: 'N'
