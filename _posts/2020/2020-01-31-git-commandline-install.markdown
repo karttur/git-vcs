@@ -5,7 +5,7 @@ categories: git
 excerpt: Install Git command line tool
 image: avg-trmm-3b43v7-precip_3B43_trmm_2001-2016_A
 date: '2020-01-31 T18:17:25.000Z'
-modified: '2020-11-12'
+modified: '2024-09-20'
 comments: true
 share: true
 figure15: github-framework_karttur_15_new-other
@@ -36,7 +36,10 @@ If your version is outdated compared to the [git official download page](https:/
 
 <span class='terminal'>$ git clone https://github.com/git/git</span>
 
+# THE REST OF THIS POST IS OUTDATED
+
 ### Check and setup user name
+
 
 Every git project (repository, or repo for short) is linked to a user name. If you have a dominating, or single, git user on your machine you can add a global user name to your local machine git. If you have more than one git user you can set the user name in each local repo. The local user over-rides any global user, so you can set both types in the same machine. For more information, please vist the GitHub page [Setting your username in Git](https://help.github.com/en/articles/setting-your-username-in-git).
 
